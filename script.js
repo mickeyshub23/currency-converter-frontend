@@ -4,6 +4,7 @@ const fromSelect = document.getElementById('fromCurrency');
 const toSelect = document.getElementById('toCurrency');
 const amountInput = document.getElementById('amount');
 const convertBtn = document.getElementById('convertBtn');
+const swapBtn = document.getElementById('swapBtn');
 const resultEl = document.getElementById('result');
 
 async function loadCurrencies() {
@@ -43,4 +44,10 @@ async function convert() {
 
 convertBtn.addEventListener('click', convert);
 amountInput.addEventListener('input', convert);
+swapBtn.addEventListener('click', () => {
+  const fromVal = fromSelect.value;
+  fromSelect.value = toSelect.value;
+  toSelect.value = fromVal;
+  if (amountInput.value) convert();
+});
 loadCurrencies();
