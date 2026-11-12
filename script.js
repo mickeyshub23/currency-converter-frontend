@@ -1,4 +1,4 @@
-const API_BASE_URL = window.API_BASE_URL || 'https://your-backend.onrender.com';
+const API_BASE_URL = window.API_BASE_URL || 'https://currency-converter-backend-iz0b.onrender.com';
 
 const fromSelect = document.getElementById('fromCurrency');
 const toSelect = document.getElementById('toCurrency');
@@ -6,6 +6,10 @@ const amountInput = document.getElementById('amount');
 const convertBtn = document.getElementById('convertBtn');
 const swapBtn = document.getElementById('swapBtn');
 const resultEl = document.getElementById('result');
+
+function formatNumber(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 async function loadCurrencies() {
   try {
@@ -22,7 +26,7 @@ async function loadCurrencies() {
     fromSelect.value = 'USD';
     toSelect.value = 'EUR';
   } catch (error) {
-    resultEl.textContent = 'Failed to load currencies.';
+    resultEl.innerHTML = '<div class="result-placeholder">Failed to load currencies.</div>';
   }
 }
 
@@ -36,9 +40,11 @@ async function convert() {
       `${API_BASE_URL}/convert?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&amount=${encodeURIComponent(amount)}`
     );
     const data = await response.json();
-    resultEl.textContent = `${amount} ${from} = ${data.result.toFixed(2)} ${to}`;
+    const formattedAmount = formatNumber(amount);
+    const formattedResult = formatNumber(data.result.toFixed(2));
+    resultEl.innerHTML = `<span class="result-value">${formattedAmount} ${from} = ${formattedResult} ${to}</span>`;
   } catch (error) {
-    resultEl.textContent = 'Conversion failed.';
+    resultEl.innerHTML = '<div class="result-placeholder">Conversion failed.</div>';
   }
 }
 

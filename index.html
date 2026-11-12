@@ -3,62 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CEW WEB</title>
+  <title>CEW WEB | Currency Converter</title>
+  <link rel="icon" type="image/png" href="cew.png">
+  <link rel="apple-touch-icon" href="cew.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <script>
     window.API_BASE_URL = 'https://currency-converter-backend-iz0b.onrender.com';
   </script>
 </head>
 <body>
-  <div class="bg-glow"></div>
-  <header class="header">
-    <div class="logo">
-      <span class="logo-icon">$</span>
-      <span class="logo-text">CEW</span>
-      <span class="logo-accent">WEB</span>
+  <main class="layout">
+    <div class="left-column">
+      <div class="logo-row">
+        <img class="logo-img" src="cew.png" alt="CEW WEB logo" width="48" height="48" />
+        <div class="logo-texts">
+          <span class="logo-main">CEW</span>
+          <span class="logo-accent">WEB</span>
+        </div>
+      </div>
+      <h1 class="headline">WELCOME TO CEW WEB.</h1>
+      <p class="subtitle">A fast, clean currency converter with live exchange rates for over 160+ currencies.</p>
+      <div class="badges">
+        <span class="badge">EASY</span>
+        <span class="badge">FAST</span>
+        <span class="badge">RELIABLE EXCHANGE</span>
+      </div>
     </div>
-  </header>
-
-  <main class="container">
-    <div class="converter-card">
-      <h1 class="card-title">Currency Exchange Web</h1>
-
-      <div class="input-group">
-        <label for="fromCurrency">From</label>
-        <div class="select-wrapper">
+    <div class="right-column">
+      <div class="converter-card">
+        <h2 class="card-title">Convert Currency</h2>
+        <div class="input-group">
+          <label class="field-label" for="fromCurrency">FROM</label>
           <select id="fromCurrency"></select>
         </div>
-      </div>
-
-      <div class="swap-container">
-        <button id="swapBtn" class="swap-btn" title="Swap currencies">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 7h10v10"></path>
-            <path d="M7 17L17 7"></path>
-          </svg>
-        </button>
-      </div>
-
-      <div class="input-group">
-        <label for="toCurrency">To</label>
-        <div class="select-wrapper">
+        <div class="swap-container">
+          <button id="swapBtn" class="swap-btn" title="Swap currencies">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 7h10v10"></path>
+              <path d="M7 17L17 7"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="input-group">
+          <label class="field-label" for="toCurrency">TO</label>
           <select id="toCurrency"></select>
         </div>
-      </div>
-
-      <div class="input-group">
-        <label for="amount">Amount</label>
-        <input type="number" id="amount" step="any" placeholder="0" />
-      </div>
-
-      <button id="convertBtn" class="convert-btn">Convert</button>
-
-      <div class="result" id="result">
-        <div class="result-placeholder">Enter an amount to see the conversion</div>
+        <div class="input-group">
+          <label class="field-label" for="amount">AMOUNT</label>
+          <input type="number" id="amount" step="any" placeholder="0" />
+        </div>
+        <button id="convertBtn" class="convert-btn">Convert</button>
+        <div class="result" id="result">
+          <div class="result-placeholder">Enter an amount to see the conversion</div>
+        </div>
+        <div class="card-footer">
+          By <strong>Mickey's Tech Hub</strong> · Rates by 
+          <a href="https://www.exchangerate-api.com" class="footer-link">ExchangeRate-API</a>
+        </div>
       </div>
     </div>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
