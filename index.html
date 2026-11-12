@@ -10,25 +10,55 @@
   </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Currency Converter</h1>
+  <div class="bg-glow"></div>
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">$</span>
+      <span class="logo-text">Currency</span>
+      <span class="logo-accent">X</span>
+    </div>
+  </header>
+
+  <main class="container">
     <div class="converter-card">
+      <h1 class="card-title">Convert Currency</h1>
+
       <div class="input-group">
         <label for="fromCurrency">From</label>
-        <select id="fromCurrency"></select>
+        <div class="select-wrapper">
+          <select id="fromCurrency"></select>
+        </div>
       </div>
+
+      <div class="swap-container">
+        <button id="swapBtn" class="swap-btn" title="Swap currencies">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 7h10v10"></path>
+            <path d="M7 17L17 7"></path>
+          </svg>
+        </button>
+      </div>
+
       <div class="input-group">
         <label for="toCurrency">To</label>
-        <select id="toCurrency"></select>
+        <div class="select-wrapper">
+          <select id="toCurrency"></select>
+        </div>
       </div>
+
       <div class="input-group">
         <label for="amount">Amount</label>
         <input type="number" id="amount" step="any" placeholder="0" />
       </div>
+
       <button id="convertBtn">Convert</button>
-      <div class="result" id="result"></div>
+
+      <div class="result" id="result">
+        <div class="result-placeholder">Enter an amount to see the conversion</div>
+      </div>
     </div>
-  </div>
+  </main>
+
   <script src="script.js"></script>
 </body>
 </html>
