@@ -6,6 +6,7 @@ import AdminRoute from './components/AdminRoute';
 
 import Support from './pages/Support';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import AdminLogin from './pages/AdminLogin';
 import AdminLayout from './pages/AdminLayout';
 import Dashboard from './pages/Dashboard';
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/" element={<DashboardRedirect />} />
           <Route path="/support" element={<Support />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/admin/login" element={<AdminLogin />} />
 
           <Route

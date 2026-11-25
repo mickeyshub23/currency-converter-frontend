@@ -27,6 +27,23 @@ export function AuthProvider({ children }) {
     return data.tempToken;
   }, []);
 
+  const registerStep1 = useCallback(async (name, email, password) => {
+    const { data } = await api.post('/api/register', { name, email, password });
+    if (!data.tempToken) throw new Error('Unexpected server response');
+    localStorage.setItem(TEMP_TOKEN_KEY, data.tempToken);
+    return data.tempToken;
+  }, []);
+
+  const registerVerify = useCallback(async (otp) => {
+    const tempToken = localStorage.getItem(TEMP_TOKEN_KEY);
+    if (!tempToken) throw new Error('Session expired. Please register again.');
+    const { data } = await api.post('/api/register/verify', { tempToken, otp });
+    if (data.redirectUrl) {
+      localStorage.removeItem(TEMP_TOKEN_KEY);
+    }
+    return data;
+  }, []);
+
   const adminLoginStep1 = useCallback(async (email, password) => {
     const { data } = await api.post('/api/admin/login', { email, password });
     if (!data.tempToken) throw new Error('Unexpected server response');
@@ -69,10 +86,12 @@ export function AuthProvider({ children }) {
     isAdmin,
     loginStep1,
     adminLoginStep1,
+    registerStep1,
     verifyOtp,
+    registerVerify,
     resendOtp,
     logout,
-  }), [user, isAuthenticated, isAdmin, loginStep1, adminLoginStep1, verifyOtp, resendOtp, logout]);
+  }), [user, isAuthenticated, isAdmin, loginStep1, adminLoginStep1, registerStep1, verifyOtp, registerVerify, resendOtp, logout]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

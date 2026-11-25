@@ -84,10 +84,11 @@ export default function Login() {
 
   return (
     <div className="page auth-page">
-      <nav className="top-nav">
-        <Link to="/">CEW Crypto</Link>
-        <Link to="/support" className="nav-link">Support</Link>
-      </nav>
+<nav className="top-nav">
+          <Link to="/">CEW Crypto</Link>
+          <Link to="/register" className="nav-link">Register</Link>
+          <Link to="/support" className="nav-link">Support</Link>
+        </nav>
 
       <main className="main-content">
         <div className="auth-card">
@@ -166,6 +167,10 @@ export default function Login() {
                   {resendTimer > 0 ? `Resend code in ${resendTimer}s` : 'Resend code'}
                 </button>
               </div>
+
+              <p className="auth-switch">
+                Don't have an account? <Link to="/register">Create one</Link>
+              </p>
             </div>
           )}
         </div>
