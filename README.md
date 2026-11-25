@@ -1,15 +1,41 @@
-# Currency Converter Frontend
+# CEW Crypto Frontend
 
-Simple HTML/CSS/JS frontend that converts currencies by calling the backend API.
+React + Vite frontend for the CEW Crypto cryptocurrency platform.
 
-## Local setup
+## Getting Started
 
-1. Open `index.html` in a browser, or serve with any static server.
-2. Edit the `window.API_BASE_URL` value in `index.html` (or keep `.env.example` value) to point at your deployed Render backend, e.g. `https://currency-converter-backend.onrender.com`.
+1. Clone the repo and install dependencies:
+   ```
+   npm install
+   ```
 
-## Deploy on Vercel
+2. Copy `.env.example` to `.env` and set your API URL:
+   ```
+   cp .env.example .env
+   # Edit .env and set VITE_API_URL to your backend URL
+   ```
 
-1. Push this folder to its own GitHub repository.
-2. In Vercel, import the repo and deploy (static HTML preset).
-3. Set the environment variable `API_BASE_URL` to your Render backend URL.
-4. Update `window.API_BASE_URL` in `index.html` to match, then redeploy.
+3. Start the dev server:
+   ```
+   npm run dev
+   ```
+
+4. Build for production:
+   ```
+   npm run build
+   ```
+
+## Pages
+
+- `/support` — Contact form
+- `/login` — User authentication with email/password + OTP
+- `/admin/login` — Admin authentication with email/password + OTP
+- `/admin/dashboard` — Admin dashboard with stats (protected)
+- `/admin/users` — User management (protected)
+- `/admin/messages` — Message management (protected)
+
+## Environment Variables
+
+| Variable       | Description                          |
+|----------------|--------------------------------------|
+| `VITE_API_URL` | Base URL of the backend API          |
