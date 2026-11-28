@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function Register() {
-  const { registerStep1, verifyOtp } = useAuth();
+  const { registerStep1, registerVerify, resendOtp } = useAuth();
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
@@ -48,12 +48,23 @@ export default function Register() {
     setError('');
     setLoading(true);
     try {
-      await verifyOtp(otp, false);
-      navigate('/login', { replace: true });
+      await registerVerify(otp);
+      navigate('/dashboard', { replace: true });
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid code. Please try again.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResend = async () => {
+    if (resendTimer > 0) return;
+    try {
+      await resendOtp();
+      setResendTimer(60);
+      startResendCountdown();
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to resend code');
     }
   };
 
@@ -188,7 +199,7 @@ export default function Register() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => {}}
+                  onClick={handleResend}
                   disabled={resendTimer > 0 || loading}
                 >
                   {resendTimer > 0 ? `Resend code in ${resendTimer}s` : 'Resend code'}

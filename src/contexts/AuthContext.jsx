@@ -38,8 +38,11 @@ export function AuthProvider({ children }) {
     const tempToken = localStorage.getItem(TEMP_TOKEN_KEY);
     if (!tempToken) throw new Error('Session expired. Please register again.');
     const { data } = await api.post('/api/register/verify', { tempToken, otp });
-    if (data.redirectUrl) {
-      localStorage.removeItem(TEMP_TOKEN_KEY);
+    localStorage.removeItem(TEMP_TOKEN_KEY);
+    if (data.accessToken) {
+      setToken(data.accessToken);
+      setAccessToken(data.accessToken);
+      setUser(data.user || null);
     }
     return data;
   }, []);
